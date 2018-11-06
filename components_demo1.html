@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue</title>
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	{{ message }}<br>
+	<child-cmp v-bind:my-message="anotherMessage"></child-cmp>
+
+</div>
+<div id="app-2">
+	<span v-bind:title="message">
+		over to binding title view.
+	</span>
+
+</div>
+<div id="app-3">
+	<p v-if="seen">you can see this now.</p>
+</div>
+
+<div id="app-4">
+	<count-button></count-button>
+	<ol>
+		<li v-for="todo in todos">
+			{{ todo.text }}
+		</li>
+	</ol>
+</div>
+
+<div id="app-5">
+	<p>{{ message }}</p>
+	<button v-on:click="reverseMessage">Reverse Message</button>
+</div>
+
+<div id="app-6">
+	<p>{{ message }}</p>
+	<input type="text" v-model="message" onkeypress="console.log(this.value);">
+</div>
+
+<script>
+var txtSet = {
+	list1 : 'gulp-imagemin: Minified 1 images',
+	list2 : 'gulp-imagemin: Minified 2 images',
+	list3 : 'gulp-imagemin: Minified 3 images',
+}
+
+Vue.component('child-cmp', {
+	props: ['myMessage'],
+	template: '<span class="mgs-child">{{myMessage}}</span>',
+});
+
+Vue.component('count-button', {
+	template: '<button type="button" class="btn-count" v-on:click="counter += 1">counter : {{counter}}</button>',
+	data: function () {
+		return {
+			counter: 0
+		}
+	}
+});
+
+var app = new Vue({
+	el: '#app',
+	data: {
+		'message': 'message',
+		'anotherMessage' : "props child message",
+	},
+	beforeCreate() {
+		console.log('beforeCreate');
+	},
+	created() {
+		console.log('created');
+	},
+	updated() {
+		console.log('updated');
+		this.$nextTick(function () {
+			console.log('nextTick');
+		});
+	},
+	mounted() {
+		console.log('mounted');
+	},
+});
+
+var app2 = new Vue({
+	el: '#app-2',
+	data: {
+		message: '이 페이지는 ' + new Date() + ' 에 로드 되었습니다',
+	}
+});
+
+var app3 = new Vue({
+	el: '#app-3',
+	data: {
+		seen: false,
+	}
+});
+
+var app4 = new Vue({
+	el : '#app-4',
+	data : {
+		todos : [
+			{text : txtSet.list1},
+			{text : txtSet.list2},
+			{text : txtSet.list3},
+		]
+	}
+});
+// [console command] app4.todos.push({ text: 'new item' });
+
+var app5 = new Vue({
+	el : '#app-5',
+	data : {
+		message : 'app5 message'
+	},
+	methods : {
+		reverseMessage : function(){
+			this.message = this.message.split('').reverse().join('');
+		}
+	}
+});
+
+var app5 = new Vue({
+	el : '#app-6',
+	data : {
+		message : 'data input app6'
+	}
+});
+</script>
+</body>
+</html>
