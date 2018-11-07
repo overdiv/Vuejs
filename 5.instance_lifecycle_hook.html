@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>property_method</title>
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+
+<script>
+vm = new Vue({
+	data : {
+		a : 1
+	},
+	created() {
+		// 'this'는 vm 인스턴스를 가리킴
+		console.log('a is: ' + this.a);
+	},
+});
+</script>
+</body>
+</html>

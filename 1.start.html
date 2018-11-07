@@ -52,6 +52,9 @@ var vm =	new Vue({	// instance
 	mounted : function(){
 		console.log('mounted');
 		this.message = 'Hello App component';
+		this.$nextTick(function(){
+			console.log('모든 화면이 렌더링된 후 실행');
+		})
 	},
 	updated : function(){
 		console.log('updated');
