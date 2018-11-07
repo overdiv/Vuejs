@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>property_method</title>
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<p>{{ foo }}</p>
+	<!-- Object.freeze(obj); 한다면, foo는 변하지 않는다. -->
+	<button type="button" v-on:click="foo = 'baz'">change it</button>
+</div>
+
+<script>
+//각 Vue 인스턴스는 data 객체에 있는 모든 속성을 프록시 처리 함.
+
+// 데이터 객체
+var obj = {
+	foo : 'bar',
+	message : 'message'
+}
+
+// Object.freeze(obj);
+
+// Vue인스턴스에 데이터 객체를 추가
+var vm = new Vue({
+	el : '#app',
+	data : obj,
+	methods : {
+		testMethod(){
+			//obj.foo = 'baz';
+			console.log(this.foo);
+		}
+	}
+});
+
+// 같은 객체를 참조함.
+console.log(vm.foo === obj.foo);	// true
+
+// 속성 설정은 원본 데이터에도 영향을 미친다.
+// vm.foo = 'baz'
+// data.foo // => 'baz'
+
+// 데이터가 변경되면 화면은 다시 렌더링됨. 유념할 점은, data에 있는 속성들은 인스턴스가 생성될 때 존재한 것들만 반응형이다.
+// vm.fizz = 'buzz';
+// fizz 가 변경되어도 화면이 갱신되지 않음. 
+// 어떤 속성이 나중에 필요하다는 것을 알고 있으며, 빈 값이거나 존재하지 않은 상태로 시작한다면 아래와 같이 초기값을 지정할 필요가 있음.
+// data: {
+//   newTodoText: '',
+//   visitCount: 0,
+//   hideCompletedTodos: false,
+//   todos: [],
+//   error: null
+// }
+
+// 유일한 예외로 기존 속성이 변경되는 것을 막아 반응성 시스템이 추적 할 수 없게됨.
+// Object.freeze(obj);
+</script>
+</body>
+</html>
