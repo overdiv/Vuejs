@@ -124,10 +124,22 @@ var app5 = new Vue({
 	}
 });
 
-var app5 = new Vue({
+var app6 = new Vue({
 	el : '#app-6',
 	data : {
 		message : 'data input app6'
+	},
+	beforeUpdate :function(){
+		console.log('before updated');
+		this.$nextTick(function(){
+			console.log('before updated done');
+		});
+	},
+	updated : function(){
+		console.log('updated');
+		this.$nextTick(function(){
+			console.log('updated done');
+		});
 	},
 	methods : {
 		consoleMsg (){
