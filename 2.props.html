@@ -10,19 +10,19 @@
 <body>
 <div id="app">
 	<!-- props명 = 상위 콤포넌트의 데이터 -->
-	<child-component v-bind:pased-data="message"></child-component>
-	<sibling-component v-bind:pased-message="anotherMessage"></sibling-component>
+	<child-component v-bind:passed-data="message"></child-component>
+	<sibling-component v-bind:passed-message="anotherMessage"></sibling-component>
 </div>
 <script>
 // parent component의 message 데이터를 props로 child component에 넘김.
 Vue.component('child-component', {
 	props : ['passedData'],
-	template : '<p>{{passedData}}</p>'
+	template : '<p>{{passedData}}</p>',
 });
 
 Vue.component('sibling-component', {
 	props : ['passedMessage'],
-	template : '<p>{{passedMessage}}</p>'
+	template : '<p>{{passedMessage}}</p>',
 });
 
 var app = new Vue({
