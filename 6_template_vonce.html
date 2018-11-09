@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue</title>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<p v-once>{{ message }}</p>
+	<button class="btn btn-outline-secondary btn-sm" v-on:click="msgChange">{{anotherMessage}}</button>
+	<button class="btn btn-outline-info btn-sm btn-vcg" v-on:click="viewChange">{{vcg}}</button>
+</div>
+
+<script>
+var app = new Vue({
+	el: '#app',
+	data: {
+		'message': 'message',
+		'anotherMessage' : "props child message",
+		'vcg' : 'viewchanged'
+	},
+	beforeCreate() {
+		console.log('beforeCreate');
+	},
+	created() {
+		console.log('created');
+	},
+	updated() {
+		console.log('updated');
+		var btn = document.querySelector('.btn-vcg');
+		btn.classList.remove('btn-outline-info');
+		btn.classList.add('btn-warning');
+		this.$nextTick(function () {
+			console.log('nextTick');
+		});
+	},
+	mounted() {
+		console.log('mounted');
+	},
+	methods : {
+		msgChange(){
+			this.message = 'changed'
+		},
+		viewChange(){
+			this.vcg = this.message;
+		}
+	}
+});
+</script>
+</body>
+</html>
