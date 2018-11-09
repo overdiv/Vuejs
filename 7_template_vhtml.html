@@ -13,7 +13,7 @@
 	<p class="panel-heading">Using mustaches: {{ rawHtml }}</p>
 	<p class="panel-body">Using v-html directive: <span v-html="rawHtml"></span></p>
 	<p class="panel-body">
-		<button v-bind:disabled="isButtonDisabled" class="btn btn-default">v-bind:disabled</button>
+		<button v-bind:disabled="isButtonDisabled" class="btn btn-default">v-bind:disabled {{this.$attrs ? 'true' : 'false'}}</button>
 	</p>
 </div>
 
