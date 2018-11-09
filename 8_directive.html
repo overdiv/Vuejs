@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue</title>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app" class="panel panel-default">
+	<p v-if="seen" class="panel-heading">{{message}}</p>
+	<div class="panel-body">
+		<button v-on:click="drtive" class="btn btn-default">view</button>
+	</div>
+</div>
+
+<script>
+var vm = new Vue({
+	el: '#app',
+	data: {
+		message : 'message...',
+		seen : false,
+	},
+	updated() {
+		console.log('updated!');
+	},
+	destroyed() {
+		console.log('destroyed');
+	},
+	methods : {
+		drtive(){
+			console.log('directive');
+			if(this.seen){
+				this.seen = false;
+			} else {
+				this.seen = true;
+			}
+		}
+	}
+});
+</script>
+</body>
+</html>
