@@ -12,14 +12,18 @@
 <div id="app" class="panel panel-default">
 	<p class="panel-heading">Using mustaches: {{ rawHtml }}</p>
 	<p class="panel-body">Using v-html directive: <span v-html="rawHtml"></span></p>
+	<p class="panel-body">
+		<button v-bind:disabled="isButtonDisabled" class="btn btn-default">v-bind:disabled</button>
+	</p>
 </div>
 
 <script>
-var app = new Vue({
+var vm = new Vue({
 	el: '#app',
 	data: {
-		'rawHtml': '<span style="color:red;">This should be red.</span>',
-	},
+		rawHtml : '<span style="color:red;">This should be red.</span>',
+		isButtonDisabled : true
+	}
 });
 </script>
 </body>
