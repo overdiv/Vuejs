@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue</title>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app" class="panel panel-default">
+	<p class="panel-heading">Using mustaches: {{ rawHtml }}</p>
+	<p class="panel-body">Using v-html directive: <span v-html="rawHtml"></span></p>
+</div>
+
+<script>
+var app = new Vue({
+	el: '#app',
+	data: {
+		'rawHtml': '<span style="color:red;">This should be red.</span>',
+	},
+});
+</script>
+</body>
+</html>
