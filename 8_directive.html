@@ -10,10 +10,10 @@
 </head>
 <body>
 <div id="app" class="panel panel-default">
-	<p v-if="seen" class="panel-heading">{{message}}</p>
-	<div class="panel-body">
+	<div class="panel-heading">
 		<button v-on:click="drtive" class="btn btn-default">view</button>
 	</div>
+	<p v-if="seen" class="panel-body">{{message}}</p>
 </div>
 
 <script>
