@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue</title>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app" class="panel panel-default">
+	<p class="panel-heading">watch</p>
+	<p class="panel-body">{{fullName}}</p>
+</div>
+<div id="app2" class="panel panel-default">
+	<p class="panel-heading">computed</p>
+	<p class="panel-body">{{fullName}}</p>
+</div>
+
+<script>
+var vm = new Vue({
+	el : '#app',
+	data : {
+		firstName : 'aran',
+		lastName : 'jackson',
+		fullName : 'aran jackson'
+	},
+	// 명령형 프로그래밍
+	watch : {
+		firstName : function(val){
+			this.fullName = val + ' ' + this.lastName;
+		},
+		lastName : function(val){
+			this.fullName = this.fullName + ' ' + val;
+		}
+	}
+});
+var vm = new Vue({
+  el: '#app2',
+  data: {
+    firstName: 'Foo',
+    lastName: 'Bar'
+  },
+  // 선언형 프로그래밍
+  computed: {
+    fullName: function () {
+      return this.firstName + ' ' + this.lastName;
+    }
+  }
+})
+</script>
+</body>
+</html>
