@@ -11,22 +11,25 @@
 <body>
 <div id="app" class="panel panel-default">
 	<p class="panel-heading">origin message : "{{message}}"</p>
-	<p class="panel-body">reverse message : "{{reverseMessage}}"</p>
+	<p class="panel-body">reverse message : "{{reversedMessage}}"</p>
 </div>
 
 <script>
-var app = new Vue({
+var vm = new Vue({
 	el : '#app',
 	data : {
 		message : 'message'
 	},
 	computed : {
 		// 계산된 getter
-		reverseMessage(){
+		reversedMessage(){
 			return this.message.split('').reverse().join('');
 		}
 	}
 });
+console.log(vm.reversedMessage); // => 'message'
+vm.message = 'Goodbye';
+console.log(vm.reversedMessage) ;// => 'eybdooG'
 </script>
 </body>
 </html>
