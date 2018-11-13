@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue</title>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app" class="panel panel-default">
+	<p class="panel-heading">write this a question.</p>
+	<div class="panel-body">
+		<input type="text" v-model="question">
+		<p>{{answer}}</p>
+	</div>
+</div>
+
+<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+<script>
+var app = new Vue({
+	el : '#app',
+	data : {
+		question : '',
+		answer : 'cannot answer until you ask a question.'
+	},
+	watch : {
+		question(newAnswer){
+			question : '';
+		}
+	},
+	methods : {
+
+	}
+});
+</script>
+</body>
+</html>
