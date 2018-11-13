@@ -43,12 +43,28 @@ var vm = new Vue({
     lastName: 'Bar'
   },
   // 선언형 프로그래밍
-  computed: {
-    fullName: function () {
-      return this.firstName + ' ' + this.lastName;
-    }
-  }
-})
+//   computed: {
+//     fullName: function () {
+//       return this.firstName + ' ' + this.lastName;
+//     }
+//   }
+	// getter, setter 함수
+	computed : {
+		fullName : {
+			// getter
+			get : function(){
+				return this.firstName + ' ' + this.lastName;
+			},
+			// setter
+			set : function(newValue){
+				var names = newValue.split(' ');
+				this.firstName = names[0];
+				this.lastName = names[names.length - 1];
+			}
+		}
+	}
+});
+vm.fullName = 'Fizz Buzz';
 </script>
 </body>
 </html>
