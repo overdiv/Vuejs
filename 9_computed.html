@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue</title>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app" class="panel panel-default">
+	<p class="panel-heading">origin message : "{{message}}"</p>
+	<p class="panel-body">reverse message : "{{reverseMessage}}"</p>
+</div>
+
+<script>
+var app = new Vue({
+	el : '#app',
+	data : {
+		message : 'message'
+	},
+	computed : {
+		// 계산된 getter
+		reverseMessage(){
+			return this.message.split('').reverse().join('');
+		}
+	}
+});
+</script>
+</body>
+</html>
