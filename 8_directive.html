@@ -16,6 +16,7 @@
 	<p v-if="seen" class="panel-body">{{message}}</p>
 
 	<!-- v-on: 의 약어로 '@'를 사용할 수 있음 -->
+	<!-- .prevent 수식어로 인해 트리거된 이벤트에서 event.preventDefault()를 호출하도록 v-on 디렉티브에게 알림 -->
 	<form action="/" @submit.prevent="onSubmit" class="form-control-static">
 		<input type="text" value="" class="input-sm">
 		<button type="submit" class="btn btn-default btn-sm">submit</button>
@@ -45,7 +46,6 @@ var vm = new Vue({
 			}
 		},
 		onSubmit(){
-			event.preventDefault();
 			alert(this.message);
 		}
 	}
