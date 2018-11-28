@@ -14,10 +14,11 @@
 	<p class="panel-body">Using v-html directive: <span v-html="rawHtml"></span></p>
 	<p class="panel-body">
 		<!-- 
-		* template literal은 샌드박스 처리됨, 전역으로 사용가능한 것에만 접근 가능함.
+		* template literal은 샌드박스 처리됨, Math와 Date 같은 전역으로 사용가능한 것에만 접근 가능함.
 		* 사용자 정의 전역에 엑세스 불가.
+		* 각바인딩에 하나의 단일 표현식만 포함될 수 있음.
 		-->
-		<button v-bind:disabled="isButtonDisabled" class="btn btn-default">v-bind:disabled {{this.$attrs ? 'true' : 'false'}}</button>
+		<button v-bind:disabled="isButtonDisabled" class="btn btn-default">v-bind:disabled : {{this.$attrs ? 'true' : 'false'}}</button>
 	</p>
 </div>
 
