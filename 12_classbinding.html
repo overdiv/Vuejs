@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue</title>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<!-- 인라인 객체 바인드 -->
+	<button class="btn"
+		v-bind:class="{ 'btn-primary' : isActive, 'btn-danger' : hasError }">
+		class bind 1nd
+	</button>
+	
+	<!-- data 속성 바인드 -->
+	<button class="btn" :class="classObject">
+		{{name}}
+	</button>
+
+	<!-- computed 속성 바인드 -->
+	<button class="btn" v-bind:class="classObject2">class bind 3nd</button>
+	
+	<hr>
+	<!-- 배열 바인드 -->
+	<button class="btn" :class="[activeClass, errorClass]">array bind</button>
+
+	<!-- 조건부 클래스 토글 -->
+	<button class="btn" :class="[isActive ? activeClass : '', errorClass]">toggle bind</button>
+
+	<!-- 객체 구문 바인드 -->
+	<button class="btn" :class="[{'active' : isActive}, errorClass]">added object bind</button>
+</div>
+
+<script>
+var app = new Vue({
+	el : '#app',
+	data : {
+		isActive : true,
+		hasError : false,
+		error : null,
+		name : 'class bind 2nd',
+		activeClass : 'active',
+		errorClass : 'btn-warning',
+
+		classObject : {
+			'btn-info' : true,
+			'disabled' : true,
+		}
+	},
+
+	computed : {
+		classObject2 : function(){
+			return {
+				'btn-success' : this.isActive && !this.error,
+				'btn-danger' : this.error && this.error.type === 'fatal'
+			}
+		}
+	}
+});
+</script>
+</body>
+</html>
