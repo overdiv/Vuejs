@@ -11,8 +11,8 @@
 <body>
 <div id="app" class="panel panel-default">
 	<p class="panel-heading">origin message : "{{message}}"</p>
-	<p class="panel-body">reverse message : "{{reversedMessage}}"</p>
 	<p class="panel-body">reverse message : "{{reverseMessage()}}"</p>
+	<p class="panel-body">reverse message : "{{reversedMessage}}"</p>
 	<p class="panel-body">now : {{now}}ms</p>
 </div>
 
@@ -23,7 +23,7 @@ var vm = new Vue({
 		message : 'message'
 	},
 	// 메소드를 호출하면 렌더링을 다시 할때마다 항상 함수를 실행함.
-	// 캐싱이 필요하지 않을 경우에 사용.
+	// 캐싱을 원하지 않을 경우에 사용.
 	methods : {
 		reverseMessage(){
 			return this.message.split('').reverse().join('');
