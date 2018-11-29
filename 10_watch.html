@@ -19,7 +19,7 @@
 </div>
 
 <script>
-var vm = new Vue({
+var vm1 = new Vue({
 	el : '#app',
 	data : {
 		firstName : 'aran',
@@ -32,11 +32,11 @@ var vm = new Vue({
 			this.fullName = val + ' ' + this.lastName;
 		},
 		lastName : function(val){
-			this.fullName = this.fullName + ' ' + val;
+			this.fullName = this.firstName + ' ' + val;
 		}
 	}
 });
-var vm = new Vue({
+var vm2 = new Vue({
   el: '#app2',
   data: {
     firstName: 'Foo',
@@ -64,7 +64,7 @@ var vm = new Vue({
 		}
 	}
 });
-vm.fullName = 'Fizz Buzz';
+vm2.fullName = 'Fizz Buzz';
 </script>
 </body>
 </html>
