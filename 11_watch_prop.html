@@ -10,11 +10,14 @@
 </head>
 <body>
 <div id="app" class="panel panel-default">
-	<p class="panel-heading">write this a question.</p>
+	<p class="panel-heading">watch prop</p>
 	<div class="panel-body">
-		<input type="text" v-model="question">
-		<p>{{answer}}</p>
+		<input class="form-control" placeholder="yes/no 질문을 물어보세요." v-model="question">
+		
 	</div>
+	<p class="panel-body">
+		{{answer}}
+	</p>
 </div>
 
 <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
@@ -24,15 +27,37 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		question : '',
-		answer : 'cannot answer until you ask a question.'
+		answer : '질문을 하기 전까지는 대답할 수 없습니다.'
 	},
 	watch : {
-		question(newAnswer){
-			question : '';
+		question(newQuestion){
+			this.answer = '입력을 기다리는중...';
+			this.getAnswer();
 		}
 	},
 	methods : {
-
+		// _.debounce는 lodash가 제공하는 기능으로
+		// 특히 시간이 많이 소요되는 작업을 실행할 수 있는 빈도를 제한한다다.
+		// 이 경우, 우리는 yesno.wtf/api 에 액세스 하는 빈도를 제한하고,
+		// 사용자가 ajax요청을 하기 전에 타이핑을 완전히 마칠 때까지 기다린다.
+		getAnswer : _.debounce(function(){
+				if (this.question.indexOf('?') === -1) {
+					this.answer = '질문에는 일반적으로 물음표가 포함됩니다. ;-)';
+					return
+				}
+				this.answer = '생각중...';
+				var vm = this
+				axios.get('https://yesno.wtf/api')
+					.then((res) => {
+						vm.answer = _.capitalize(res.data.answer);
+					})
+					.catch((err) => {
+						vm.answer = '에러! API 요청에 오류가 있습니다. ' + err
+					})
+			},
+			// 사용자가 입력을 기다리는 시간(ms)
+			500
+		)
 	}
 });
 </script>
