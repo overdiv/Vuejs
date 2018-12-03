@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue</title>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<p v-if="ok">Yes</p>
+	<p v-else>No</p>
+	<hr>
+	<!-- 하나 이상의 엘리먼트를 트랜지션하기위해 teamplate에 사용 -->
+	<template v-if="ok">
+		<div class="panel panel-info">
+			<div class="panel-heading">Title</div>
+			<p class="panel-body">
+				Paragraph
+			</p>
+		</div>
+	</template>
+
+	<!-- if else else-if -->
+	<div v-if="mathNum > 0.5" class="alert alert-success">
+		result : {{mathNum}} > 0.5 //
+		true
+	</div>
+	<div v-else class="alert alert-danger">
+		result : {{mathNum}} > 0.5 //
+		false
+	</div>
+
+	<hr>
+
+	<div v-if="type === 'A'" class="h4">
+		type : A
+	</div>
+	<div v-else-if="type === 'B'" class="h4">
+		type : B
+	</div>
+	<div v-else-if="type === 'C'" class="h4">
+		type : C
+	</div>
+	<div v-else class="h4">
+		Not A/B/C
+	</div>
+	
+	<hr>
+
+	<!-- key를 이용한 재사용 가능한 엘리먼트 제어 -->
+	<!-- 인풋을 변경하지 않고 폼요소 재사용 -->
+	<template v-if="loginType === 'username'">
+		<label for="inpName">Name</label>
+		<input type="text" id="inpName" placeholder="Username">
+	</template>
+	<template v-else>
+		<label for="inpEmail">Email</label>
+		<input type="text" id="inpEmail" placeholder="Email">
+	</template>
+	
+	<br>
+
+	<!-- 유일한 값으로 key 속성 추가 : 입력이 처음부터 렌더링 -->
+	<template v-if="loginType === 'username'">
+		<label for="inpName2">사용자 이름</label>
+		<input placeholder="사용자 이름을 입력하세요" key="username-input" id="inpName2">
+	</template>
+	<template v-else>
+		<label for="inpEmail2">이메일</label>
+		<input placeholder="이메일 주소를 입력하세요" key="email-input" id="inpEmail2">
+	</template>
+	<br>
+	<button type="button" class="btn btn-sm btn-primary" @click="loginTypeChange">type change</button>
+	
+	<hr>
+	<!-- v-show : template 구문 지원 안함 / css display 기반 토글 -->
+	<p v-show="ok" class="h4">hello v-show</p>
+
+	<!-- 
+		v-if는 토글 비용이 높고, v-show는 초기 렌더링 비용이 더 높음. 
+		자주 바꾸기를 원하면 v-show, 런타임시 조건이 바뀌지 않으면 v-if 권장.
+	-->
+</div>
+
+<script>
+var app = new Vue({
+	el : '#app',
+	data : {
+		ok : true,
+		mathNum : Math.random().toFixed(3),
+		type : 'B',
+		loginType : 'username'
+	},
+	methods : {
+		loginTypeChange(){
+			if(this.loginType === 'username'){
+				this.loginType = 'email';
+			}else{
+				this.loginType = 'username';
+			}
+		}
+	}
+});
+</script>
+</body>
+</html>
