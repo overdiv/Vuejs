@@ -33,9 +33,19 @@
 
 	<!-- 객체 구문 바인드 -->
 	<button class="btn" :class="[{'active' : isActive}, errorClass]">added object bind</button>
+	
+	<hr>
+	<!-- 컴포넌트와 함께 사용 -->
+	<my-component class="alert"></my-component>
+
+	<!-- 컴포넌트 클래스바인딩 -->
+	<my-component :class="{'alert alert-danger' : isActive}"></my-component>
 </div>
 
 <script>
+Vue.component('my-component', {
+	template: '<div class="alert-info">alert info</div>'
+})	
 var app = new Vue({
 	el : '#app',
 	data : {
@@ -61,6 +71,7 @@ var app = new Vue({
 		}
 	}
 });
+
 </script>
 </body>
 </html>
