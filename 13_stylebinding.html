@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue</title>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<!-- 인라인 스타일 바인딩 -->
+	<p v-bind:style="{color: activeColor, fontSize: fontSize + 'px'}">vBind inline style</p>
+
+	<!-- 스타일 객체에 직접 바인딩 (much better) -->
+	<p v-bind:style="styleObject">vBind object style</p>
+
+	<!-- 배열 구문 : 여러 스타일 객체 사용 -->
+	<p v-bind:style="[styleObject, overridingStyles]">vBind object style override</p>
+
+	<!-- 다중 값 제공(2.3.0+) : 브라우저가 지원하는 접두어만 렌더링 -->
+	<div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
+</div>
+
+<script>
+var app = new Vue({
+	el : '#app',
+	data : {
+		activeColor : '#1eacca',
+		fontSize : 20,
+		styleObject : {
+			color : 'skyblue',
+			fontSize: '2rem',
+		},
+		overridingStyles : {
+			color : '#d2acca',
+			fontSize: '22px',
+			transition:'all ease .4s',
+			boxShadow:'0 0 3px #ccc',
+			transform: 'rotate(-10deg)',
+		}
+	}
+});
+</script>
+</body>
+</html>
