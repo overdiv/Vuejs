@@ -17,6 +17,13 @@
 	</li>
 </ul>
 
+<ul id="v-for-object" class="list-group">
+	<!-- 객체의 속성을 반복 value, key, index -->
+	<li v-for="(value, key, index) in items" class="list-group-item">
+		{{index}}. {{key}} : {{value}}
+	</li>
+</ul>
+
 <script>
 var app = new Vue({
 	el : '#list-1',
@@ -26,6 +33,16 @@ var app = new Vue({
 			{message : 'Foo'},
 			{message : 'Bar'}
 		],
+	}
+});
+var app2 = new Vue({
+	el : '#v-for-object',
+	data: {
+		items : {
+			firstName : 'Foo',
+			lastName : 'Bar',
+			age : 30
+		}
 	}
 });
 </script>
