@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Vue</title>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<ul id="list-1" class="list-group">
+	<!-- item : 반복되는 요소 별칭 , items : 원본 데이터 배열 -->
+	<!-- 현재 항목의 인덱스에 대한 두번째 전달인자 -->
+	<li v-for="(item, index) of items" :key="index.id" class="list-group-item">
+		{{parentMessage}} - {{index}} - {{item.message}}
+	</li>
+</ul>
+
+<ul id="v-for-object" class="list-group">
+	<!-- 객체의 속성을 반복 value, key, index -->
+	<li v-for="(value, key, index) in items" :key="value.id" class="list-group-item">
+		{{index}}. {{key}} : {{value}}
+	</li>
+</ul>
+
+<script>
+var app = new Vue({
+	el : '#list-1',
+	data : {
+		parentMessage : 'Parent',
+		items: [
+			{message : 'Foo'},
+			{message : 'Bar'}
+		],
+	}
+});
+var app2 = new Vue({
+	el : '#v-for-object',
+	data: {
+		items : {
+			firstName : 'Foo',
+			lastName : 'Bar',
+			age : 30
+		}
+	}
+});
+// 기존 배열을 변형
+// push() pop() shift() unshift() splice() sort() reverse()
+app.items.push({ message: 'Baz' });
+// 항상 새 배열을 반환
+// filter() concat() slice()
+app.items = app.items.filter(function (item) {
+  return item.message.match(/Baz/);
+});
+</script>
+</body>
+</html>
